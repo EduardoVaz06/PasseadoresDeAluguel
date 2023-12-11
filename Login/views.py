@@ -78,7 +78,6 @@ def home_usuario(request):
     pesquisa_form = PesquisaServicoForm(request.GET)
 
     servicos = PrestacaoServicos.objects.all()
-    passeadores_info = []
     pesquisa_clicada = False
 
     if pesquisa_form.is_valid():
@@ -110,7 +109,10 @@ def home_usuario(request):
 
         # Adiciona a média de avaliação ao dicionário para cada passeador
         for passeador_info in passeadores_info:
-            passeador_info['media_avaliacao'] = media_dict.get(passeador_info['passeador_id'], None)
+            passeador_info['media_avaliacao'] = media_dict.get(passeador_info['passeador_id'], 0)
+
+        # Filtra passeadores com avaliação nula e ordena pela média de avaliação em ordem decrescente
+        passeadores_info = sorted([p for p in passeadores_info if p['media_avaliacao'] is not None], key=lambda x: x['media_avaliacao'], reverse=True)
 
     tipo_usuario = TipoUsuario.objects.get(user=request.user)
     if tipo_usuario.tipo == 'passeador':
