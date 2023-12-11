@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Editar Perfil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/cores.css' %}">
+    
+    <style>
+        body {
+            background: url("/media/Imagens/sl_011023_55240_07.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            margin: 100px auto;
+        }
+
+        .user_card {
+            width: 350px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #000;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .form-group label {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background-color: #193e5d;
+            color: white;
+            margin-top: 15px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background-color: #193e5d;
+            color: white;
+            margin-top: 15px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .btn-foto {
+            background-color: #193e5d;
+            color: white;
+            margin-top: 15px;
+            margin-bottom: 1px;
+            padding: 8px 13px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            text-align: center; /* Adicionado para centralizar o botão */
+            display: block; /* Garante que o botão ocupe a largura total disponível */
+            margin: 0 auto; /* Define a margem automática para centralizar horizontalmente */
+        }
+
+        .input-field-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 10px;
+        }
+        
+        .input-field {
+            width: 48%;
+        }
+        .custom-file {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 40px;
+        }
+        
+        .custom-file-input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            opacity: 0;
+            height: 100%;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .custom-file-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 20;
+            height: 100%;
+            padding: .375rem .75rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border-radius: .25rem;
+            overflow: hidden;
+        }
+        
+        .custom-file-label::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: .375rem .75rem;
+            color: #fff;
+            background-color: #ffff;
+            border-left: 1px solid #ced4da;
+            border-radius: 0 .25rem .25rem 0;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="user_card form-container">
+            <h1>Editar Perfil</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ user_form.first_name.id_for_label }}">Primeiro Nome:</label>
+                    {{ user_form.first_name }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ user_form.last_name.id_for_label }}">Sobrenome:</label>
+                    {{ user_form.last_name }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ user_form.email.id_for_label }}">Endereço de Email:</label>
+                    {{ user_form.email }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ profile_form.telefone.id_for_label }}">Telefone:</label>
+                    {{ profile_form.telefone }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ profile_form.image.id_for_label }}">Foto de Perfil</label>
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="{{ profile_form.image.id_for_label }}">{{ profile_form.image.value|default:_('Nenhum arquivo escolhido') }}</label>
+                        <input type="file" name="{{ profile_form.image.name }}" class="custom-file-input" id="{{ profile_form.image.id_for_label }}" style="display: none;">
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-foto" onclick="document.getElementById('{{ profile_form.image.id_for_label }}').click()">Escolher Arquivo</button>
+                        <br>
+                    </div>
+                </div>
+                <div class="input-field-group">
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    <a href="{% url 'perfil' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

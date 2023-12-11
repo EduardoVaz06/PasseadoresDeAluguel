@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passeadores Anônimos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="main-content">
+        <header class="topnav">
+            <section class="logo"><img src="/media/Imagens/logo_p2.png" alt="logo"></section>
+            <nav>
+                <ul class="topnav-menu">
+                    <li><a href="">Página inicial</a></li>
+                    <li><a href="{% url 'infos' %}">Como funciona</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+            <button class="botao"><a href="{% url 'login' %}">Entrar</a></button>
+        </header>
+        <main class="index">
+            <div class="infos-home">
+                <h2>Precisa de um parceiro<br>
+                    para acompanhar<br>
+                    seu pet em um passeio?</h2>
+            </div>
+            <div class="infos-home2">
+                Localize um profissional qualificado<br>
+                na sua região de <strong>Porto Alegre!</strong>
+            </div>
+            <div class="container container-filtro">
+                <div class="select-field">
+                    <label for="select1">Bairro</label><br>
+                    <select id="select1">
+                        <option value="">Selecione...</option>
+                        <option value="opcao1">Aberta dos Morros</option>
+                        <option value="opcao2">Agronomia</option>
+                        <option value="opcao3">Anchieta</option>
+                        <option value="opcao4">Arquipélago</option>
+                        <option value="opcao5">Auxiliadora</option>
+                        <option value="opcao6">Azenha</option>
+                        <option value="opcao7">Bela Vista</option>
+                        <option value="opcao8">Belém Novo</option>
+                        <option value="opcao9">Belém Velho</option>
+                        <option value="opcao10">Boa Vista</option>
+                        <option value="opcao11">Boa Vista do Sul</option>
+                        <option value="opcao12">Bom Fim</option>
+                        <option value="opcao13">Bom Jesus</option>
+                        <option value="opcao14">Camaquã</option>
+                        <option value="opcao15">Campo Novo</option>
+                        <option value="opcao16">Cascata</option>
+                        <option value="opcao17">Cavalhada</option>
+                        <option value="opcao18">Centro Histórico</option>
+                        <option value="opcao19">Chácara das Pedras</option>
+                        <option value="opcao20">Chapéu do Sol</option>
+                        <option value="opcao21">Cidade Baixa</option>
+                        <option value="opcao22">Coronel Aparício Borges</option>
+                        <option value="opcao23">Costa e Silva</option>
+                        <option value="opcao24">Cristal</option>
+                        <option value="opcao25">Cristo Redentor</option>
+                        <option value="opcao26">Espírito Santo</option>
+                        <option value="opcao27">Extrema</option>
+                        <option value="opcao28">Farrapos</option>
+                        <option value="opcao29">Farroupilha</option>
+                        <option value="opcao30">Floresta</option>
+                    </select>
+                </div>
+                <div class="select-field">
+                    <label for="select2">Data</label><br>
+                    <input id="select2" type="date" name="dataSelecao">
+                </div>
+                <div class="select-field">
+                    <label for="select3">Duração</label><br>
+                    <select id="select3">
+                        <option value="">Selecione...</option>
+                        <option value="opcao1">30 min</option>
+                        <option value="opcao2">1 hora</option>
+                    </select>
+                </div>
+                <div class="select-field">
+                    <button class="botao botao-busca"><i class="fas fa-search"></i> Buscar</button>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div>&copy; 2023 - Passeadores Anônimos. Todos os direitos reservados.</div>
+            <div>Contato: rafael.scott@msn.com</div>
+        </footer>
+    </div>
+</body>
+
+</html>

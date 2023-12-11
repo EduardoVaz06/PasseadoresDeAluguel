@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passeadores Anônimos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="main-content">
+        <header class="topnav">
+            <section class="logo"><img src="/media/Imagens/logo_p2.png" alt="logo"></section>
+            <nav>
+                <ul class="topnav-menu">
+                    <li><a href="{% url 'index' %}">Página inicial</a></li>
+                    <li><a href="#">Como funciona</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+            <button class="botao"><a href="login.html">Entrar</a></button>
+        </header>
+        <main class="infos">
+            <div class="container-texto">
+                <div class="texto">
+                    <h2>Se você é um amante de animais,
+                        sabe o quão importante é oferecer
+                        uma rotina saudável e feliz para
+                        o seu pet. </h2>
+                    <br>
+                    No entanto, às vezes, é difícil conciliar os
+                    compromissos diários com a atenção que o seu
+                    animal de estimação merece. É aí que entra a
+                    figura do passeador de cães, um profissional que
+                    pode ajudar a garantir que o seu pet tenha uma
+                    vida ativa e feliz.<br>
+                    <br>
+                    O passeador de cães é um parceiro que pode
+                    fazer toda a diferença na vida do seu pet.
+                    Ele pode ajudar a manter a rotina de exercícios,
+                    além de oferecer companhia e socialização para
+                    o animal. Além disso, o passeador de cães é um
+                    profissional capacitado para lidar com situações
+                    de emergência e garantir que o seu pet esteja
+                    seguro e protegido durante o passeio.<br>
+                    <br>
+                    Se você precisa de um parceiro para acompanhar
+                    o seu pet em um passeio, não hesite em procurar
+                    um profissional qualificado e de confiança.
+                    A plataforma <strong>Passeadores Anônimos</strong>
+                    trabalha para conectar você com os profissionais
+                    mais qualificados da sua região, proporcionando
+                    segurança e a garantia de que o seu pet estará bem
+                    cuidado e recebendo a atenção que merece.
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div>&copy; 2023 - Passeadores Anônimos. Todos os direitos reservados.</div>
+            <div>Contato: rafael.scott@msn.com</div>
+        </footer>
+    </div>
+
+</body>
+
+</html>

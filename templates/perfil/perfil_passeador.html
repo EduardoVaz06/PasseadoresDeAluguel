@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Perfil do Passeador</title>
+    <!-- Adicione o link do Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Adicione o link do Font Awesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+    <style>
+        body {
+            background: #7abecc !important;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .user-card {
+            background: #74cfbf;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: white;
+        }
+
+        .profile-image-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border: 5px solid white;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Mantenha a proporção da imagem e cubra todo o contêiner */
+            object-position: center center; /* Centralize a imagem dentro do contêiner */
+        }
+
+        .btn-container {
+            margin-top: 20px;
+        }
+
+        .float-container {
+            border: 0px solid #fff;
+            padding: 20px;
+        }
+        
+        .float-child {
+            width: 50%;
+            float: left;
+            padding: 100px;
+            border: 0px inset black;
+        }
+        
+        .opcoes-horario {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .opcao {
+            margin-right: 20px;
+        }
+        
+        .dados-endereco {
+            margin-top: 20px;
+        }
+        
+        .btn-selecionar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .btn-selecionar:hover {
+            background-color: #45a049;
+        }
+          
+    </style>
+</head>
+
+<body>
+
+
+
+<div class="float-container">
+
+    <div class="float-child">
+        <div class="row justify-content-center">
+                <div class="user-card">
+                    <h1 class="mb-4">Perfil do Passeador</h1>
+                    <div class="mb-4 profile-image-container">
+                        <img src="{{ tipo_usuario.image.url }}" alt="Foto de Perfil" class="profile-image">
+                    </div>
+                    <p><i class="fas fa-user"></i> Nome: {{ tipo_usuario.user.first_name }} {{ tipo_usuario.user.last_name }}</p>
+                    <p><i class="fas fa-phone"></i> Telefone: {{ tipo_usuario.telefone }}</p>
+                    <p><i class="fas fa-phone"></i> ID: {{ tipo_usuario.user.id}}</p>
+                    <p></i> Nota do passeador: {% if media_avaliacoes %}{{ media_avaliacoes|floatformat:1 }} <i class="fas fa-star" style="color: #ffdd00;"></i>{% else %}Sem avaliações{% endif %}</p>
+                    <div class="btn-container">
+                        <a href="{% url 'home_passeador' %}" class="btn btn-primary">Voltar à Home</a>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+    <div class="float-child">
+        <div class="row justify-content-center">
+            <div class="user-card">
+                <h1>Opções de Horário</h1>
+
+                <form method="post" action="{% url 'selecionar_horario' %}" class="horario-form">
+                    {% csrf_token %}
+                    <!-- Adicione um campo oculto para o ID do passeador -->
+                    <input type="hidden" name="id_passeador" value="{{ tipo_usuario.user.id }}">
+                    
+                    <div class="container">
+                        <div class="opcoes-horario">
+                            {% for opcao in opcoes_horario %}
+                                <div class="opcao">
+                                    <label>
+                                        <input type="radio" name="horario_selecionado" value="{{ opcao.inicio }} - {{ opcao.fim }}">
+                                        {{ opcao.inicio }} - {{ opcao.fim }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- Novos campos -->
+                        <div class="dados-endereco">
+                            <label for="id_rua">Rua:</label>
+                            <input type="text" name="rua" id="id_rua" required>
+                
+                            <label for="id_numero">Número:</label>
+                            <input type="number" name="numero" id="id_numero" required>
+                
+                            <label for="id_complemento">Complemento:</label>
+                            <input type="text" name="complemento" id="id_complemento">
+                
+                            <label for="id_extras">Extras:</label>
+                            <textarea name="extras" id="id_extras"></textarea>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-selecionar">Selecionar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+  </div>
+</body>
+</html>

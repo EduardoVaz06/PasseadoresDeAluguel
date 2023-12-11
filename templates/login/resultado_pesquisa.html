@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .search-results {
+            list-style: none;
+            padding: 0;
+        }
+    
+        .search-results li {
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    
+        .search-results a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    
+        .search-results p {
+            margin: 0;
+            color: #555;
+        }
+    
+        .search-results .star-icon {
+            color: #ffdd00;
+        }
+    </style>
+</head>
+<body>
+
+<form method="get" action="">
+    {{ pesquisa_form.as_p }}
+    <input type="hidden" name="pesquisa_clicada" value="true">
+    <input type="submit" value="Pesquisar" />
+</form>
+
+<!-- Lista de serviços filtrados -->
+<!-- Lista de serviços filtrados -->
+{% if pesquisa_clicada %}
+    {% if passeadores_info %}
+        <h2>Passeadores Disponíveis</h2>
+        <ul class="search-results">
+            {% for passeador_info in passeadores_info %}
+                <li>
+                    <div>
+                        <a href="{% url 'perfil_passeador' passeador_info.passeador_id %}">
+                            {{ passeador_info.nome_passeador }}
+                        </a>
+                        {% if passeador_info.media_avaliacao %}
+                        <p class="star-icon"><i class="fas fa-star"></i> {{ passeador_info.media_avaliacao|floatformat:1 }} </p>
+                        {% else %}
+                            <p>Sem Avaliações</p>
+                        {% endif %}
+                        {% if passeador_info.duracao_passeio %}
+                            <p>Duração do Passeio: {{ passeador_info.duracao_passeio }}</p>
+                        {% else %}
+                            <p>Duração do Passeio: Não especificada</p>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum passeador encontrado com os filtros selecionados.</p>
+    {% endif %}
+{% else %}
+    <p>Procurar usuários</p>
+{% endif %}
+
+</body>
+</html>

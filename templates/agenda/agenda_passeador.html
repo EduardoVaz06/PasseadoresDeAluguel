@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Agenda</title>
+
+    <link rel="stylesheet" href="{% static 'css/agenda_passeador.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar-agenda.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    body {
+        background: #e4e4e4;
+        font-family: Poppins, sans-serif;
+        background: url('{% static "imagens/sl_011023_55240_07.jpg" %}');
+        background-size: cover; /* Para cobrir todo o background */
+        background-repeat: no-repeat; /* Para não repetir a imagem */
+    }
+    
+    .navbar {
+        background-color: #fff;
+        overflow: hidden;
+        box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    }
+    
+    .navbar a {
+        float: left;
+        display: block;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: bold;
+    }
+    
+    .navbar a:hover {
+        background-color: #cbcbcb;
+        font-weight: bold;
+        color: #193e5d;
+    }
+
+    .navbar a.active {
+        background-color: #cbcbcb; /* Cor de fundo quando o link está ativo */
+        font-weight: bold;
+        color: #193e5d;
+    }
+    .titulo {
+        font-weight: bold;
+        color: #193e5d !important; 
+    }
+</style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{% url 'agenda_passeador' user_id=request.user.id %}">Minha Agenda</a>
+        <a href="{% url 'passeios_solicitados' user_id=request.user.id %}">Passeios Solicitados</a>
+        <a href="{% url 'passeios_finalizados' user_id=request.user.id %}">Passeios Finalizados</a>
+        <a href="{% url 'home_passeador' %}">Voltar à Home</a>
+    </div>
+    <div class="container">
+        <div class="titulo">
+            <h1 style="color: #193e5d font-weight: bolder !important;">Passeios Aceitos</h1>
+        </div>
+        
+        {% if detalhes_horarios %}
+            <table>
+                <thead>
+                    <tr>
+                        <th class="text-center">Horário</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Usuário Solicitante</th>
+                        <th class="text-center">Ações</th>
+                        <!-- Adicione mais colunas conforme necessário -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detalhe in detalhes_horarios %}
+                        {% if detalhe.status|lower == 'Aceito'|lower %}
+                            <tr>
+                                <td class="text-center">{{ detalhe.horario }}</td>
+                                <td class="text-center">{{ detalhe.status }}</td>
+                                <td class="text-center">{{ detalhe.nome_solicitante }}</td>
+                                <!-- Adicione mais colunas conforme necessário -->
+                                {% if detalhe.status == 'Aceito' %}
+                                    <td class="text-center">
+                                        <form method="post" action="{% url 'finalizar_passeio' detalhe.id_solicitacao %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="status" value="{{ detalhe.id_solicitacao }}">
+                                            <button type="submit" class="btn btn-danger btn-sm w-50" >Finalizar</button>
+                                        </form>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhum horário encontrado na agenda.</p>
+        {% endif %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname;
+            const navbarLinks = document.querySelectorAll('.navbar a');
+    
+            navbarLinks.forEach(link => {
+                const linkPath = link.getAttribute('href').split('?')[0]; // Ignora parâmetros de consulta, se houver
+                if (currentPage === linkPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

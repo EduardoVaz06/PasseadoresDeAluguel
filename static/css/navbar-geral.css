@@ -1,0 +1,26 @@
+.topnav {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: var(--medium-pad) var(--default-pad);
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    border-left: 15px solid #e4e4e4;
+    border-right: 15px solid #e4e4e4;
+    border-bottom: 4px solid #e4e4e4;
+}
+
+.topnav-menu li {
+    display: inline-block;
+    padding: 0px 30px;
+}
+
+.topnav-menu li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #000000;
+}
+
+.topnav-menu li:hover {
+    font-weight: bold;
+}

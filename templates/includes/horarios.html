@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Seus cabeçalhos e estilos aqui -->
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .opcao {
+            width: 30%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Opções de Horário</h1>
+
+    <form method="post" action="{% url 'selecionar_horario' %}">
+        {% csrf_token %}
+        <!-- Adicione um campo oculto para o ID do passeador -->
+        <input type="hidden" name="id_passeador" value="{{ tipo_usuario.passeador.id }}">
+        <div class="container">
+            {% for opcao in opcoes_horario %}
+                <div class="opcao">
+                    <label>
+                        <input type="radio" name="horario_selecionado" value="{{ opcao.inicio }} - {{ opcao.fim }}">
+                        {{ opcao.inicio }} - {{ opcao.fim }}
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit">Selecionar</button>
+    </form>
+
+    <!-- Seu rodapé aqui -->
+
+</body>
+
+</html>

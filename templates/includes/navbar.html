@@ -1,0 +1,40 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous" />
+    {% load static %}
+    <style>
+        .navbar {
+            background: #33ccff !important;
+            width: 100%; /* Adiciona largura total à barra de navegação */
+        }
+        .navbar a {
+            color: white !important;
+        }
+    </style>
+</head>
+
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">Passeadores Anônimos</a>
+    <span>Bem vindo, {{ request.user }} </span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="a">        
+                <a href="{% url 'agenda_usuario' user_id=request.user.id %}" class="btn btn-primary">Ver Agenda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'perfil' %}">Ver Perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'editar_perfil' %}">Editar Perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

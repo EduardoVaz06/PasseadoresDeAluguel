@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suas solicitações</title>
+
+    <link rel="stylesheet" href="{% static 'css/agenda_passeador.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar-agenda.css' %}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{% url 'agenda_usuario' user_id=request.user.id %}">Minha Agenda</a>
+        <a href="#">Passeios Solicitados</a>
+        <a href="{% url 'passeios_finalizados_user' user_id=request.user.id %}">Passeios Finalizados</a>
+        <a href="{% url 'home_usuario' %}" class="btn btn-primary">Voltar à Home</a>
+    </div>
+    
+    <div class="container">
+        <h1>Suas solicitações</h1>
+
+        {% if detalhes_horarios %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Horário</th>
+                    <th>Status</th>
+                    <th>Passeador</th>
+                    <!-- Adicione mais colunas conforme necessário -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for detalhe in detalhes_horarios %}
+                    {% if detalhe.status|lower == 'solicitado'|lower %}
+                        <tr>
+                            <td>{{ detalhe.horario }}</td>
+                            <td>{{ detalhe.status }}</td>
+                            <td>{{ detalhe.nome_passeador }}</td>
+                            <!-- Adicione mais colunas conforme necessário -->
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhuma solicitação pendente</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

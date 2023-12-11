@@ -1,0 +1,10 @@
+:root {
+    --primary-color: #193e5d;
+    --primary-color-hover: #246294;
+    --secondary-color: #462519;
+    --cinza: #e4e4e4;
+    --dark: #5a5a5f;
+    --light: #fff;
+    --default-pad: 2.5rem;
+    --medium-pad: calc(var(--default-pad) / 2);
+}
