@@ -1,80 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .search-results {
+        form {
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        /* Estilizando os campos de entrada de texto */
+        input[type="text"] {
+            margin-bottom: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        form button {
+            background-color: #193e5d;
+            border-radius: 2px;
+            border-style: none;
+            box-shadow: none;
+            color: #fff;
+            cursor: pointer;
+            font-family: Poppins, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 35px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .texto-result {
+            margin-top: 50px;
+        }
+
+        /* Estilizando a lista de resultados */
+        ul.search-results {
             list-style: none;
             padding: 0;
+            margin-top: 50px;
         }
-    
-        .search-results li {
-            background-color: #fff;
+
+        /* Estilizando cada item da lista de resultados */
+        ul.search-results li {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
             padding: 10px;
-            margin: 10px 0;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+        }
+
+        /* Estilizando os links dentro dos resultados */
+        ul.search-results li a {
+            color: #193e5d;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Estilizando as estrelas de avaliação */
+        .star-rating {
             display: flex;
             align-items: center;
-            justify-content: space-between;
         }
-    
-        .search-results a {
-            color: #007bff;
-            text-decoration: none;
+
+        /* Estilizando as estrelas de avaliação */
+        .star-icon {
+            color: #ffbd59;
         }
-    
-        .search-results p {
-            margin: 0;
-            color: #555;
+
+        .empty-star-icon {
+            color: #ccc;
         }
-    
-        .search-results .star-icon {
-            color: #ffdd00;
+
+        p.sem-resultado {
+            color: #b42f2f;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .average-value {
+            margin-left: 5px;
         }
     </style>
 </head>
+
 <body>
 
-<form method="get" action="">
-    {{ pesquisa_form.as_p }}
-    <input type="hidden" name="pesquisa_clicada" value="true">
-    <input type="submit" value="Pesquisar" />
-</form>
+    <form method="get" action="">
+        {{ pesquisa_form.as_p }}
+        <input type="hidden" name="pesquisa_clicada" value="true">
+        <button type="submit">
+            <i class="fas fa-search"></i> Buscar
+        </button>
+    </form>
 
-<!-- Lista de serviços filtrados -->
-<!-- Lista de serviços filtrados -->
-{% if pesquisa_clicada %}
+    <!-- Lista de serviços filtrados -->
+    {% if pesquisa_clicada %}
     {% if passeadores_info %}
-        <h2>Passeadores Disponíveis</h2>
-        <ul class="search-results">
-            {% for passeador_info in passeadores_info %}
-                <li>
-                    <div>
-                        <a href="{% url 'perfil_passeador' passeador_info.passeador_id %}">
-                            {{ passeador_info.nome_passeador }}
-                        </a>
-                        {% if passeador_info.media_avaliacao %}
-                        <p class="star-icon"><i class="fas fa-star"></i> {{ passeador_info.media_avaliacao|floatformat:1 }} </p>
+    
+    <ul class="search-results">
+        <span class="texto-result"><h6>Passeadores disponíveis:</h6></span>
+        {% for passeador_info in passeadores_info %}
+        <li>
+            <div>
+                <a href="{% url 'perfil_passeador' passeador_info.passeador_id %}">
+                    {{ passeador_info.nome_passeador }}
+                </a>
+                {% with media_avaliacao=passeador_info.media_avaliacao %}
+                <div class="star-rating">
+                    {% for i in "12345" %}
+                    {% if forloop.counter <= media_avaliacao %} <i class="fas fa-star star-icon"></i>
                         {% else %}
-                            <p>Sem Avaliações</p>
+                            <i class="fas fa-star empty-star-icon"></i>
                         {% endif %}
-                        {% if passeador_info.duracao_passeio %}
-                            <p>Duração do Passeio: {{ passeador_info.duracao_passeio }}</p>
-                        {% else %}
-                            <p>Duração do Passeio: Não especificada</p>
-                        {% endif %}
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
+                        {% endfor %}
+                        <span class="average-value">{{ media_avaliacao }}</span>
+                </div>
+                {% endwith %}
+                {% if passeador_info.duracao_passeio %}
+                <p>Duração do passeio: {{ passeador_info.duracao_passeio }}</p>
+                {% else %}
+                <p>Duração do passeio: não especificada</p>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
     {% else %}
-        <p>Nenhum passeador encontrado com os filtros selecionados.</p>
+    <p class="sem-resultado">
+        <i class="fas fa-search"></i>
+        Nenhum passeador encontrado com os filtros selecionados.
+    </p>
     {% endif %}
-{% else %}
-    <p>Procurar usuários</p>
-{% endif %}
+    {% endif %}
 
 </body>
+
 </html>
