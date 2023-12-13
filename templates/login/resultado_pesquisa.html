@@ -116,12 +116,13 @@
                 {% with media_avaliacao=passeador_info.media_avaliacao %}
                 <div class="star-rating">
                     {% for i in "12345" %}
-                    {% if forloop.counter <= media_avaliacao %} <i class="fas fa-star star-icon"></i>
+                        {% if forloop.counter <= media_avaliacao %}
+                            <i class="fas fa-star star-icon"></i>
                         {% else %}
                             <i class="fas fa-star empty-star-icon"></i>
                         {% endif %}
-                        {% endfor %}
-                        <span class="average-value">{{ media_avaliacao }}</span>
+                    {% endfor %}
+                    <span class="average-value">{{ media_avaliacao|floatformat:1 }}</span>
                 </div>
                 {% endwith %}
                 {% if passeador_info.duracao_passeio %}

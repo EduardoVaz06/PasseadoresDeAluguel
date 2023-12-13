@@ -20,6 +20,7 @@ urlpatterns = [
     path('home/passeador', login_views.home_passeador, name='home_passeador'),
     path('perfil/', perfil_views.visualizar_perfil, name='perfil'),
     path('perfil_passeador/<int:user_id>/', perfil_views.perfil_passeador, name='perfil_passeador'),
+    path('perfil_passeador_self/<int:user_id>/', perfil_views.perfil_passeador_self, name='perfil_passeador_self'),
     path('horarios/<int:passeador_id>/', login_views.horarios_view, name='horarios'),
     path('selecionar_horario/', login_views.selecionar_horario, name='selecionar_horario'),
     path('editar_perfil/', perfil_views.editar_perfil, name='editar_perfil'),

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import PrestacaoServicosForm
 from django.contrib.auth.decorators import login_required
-from .models import PrestacaoServicos
 from .forms import InfoPasseioForm
+from django.contrib import messages
 
 @login_required(login_url='login')
 def cadastrar_prestacao_servicos(request):
@@ -12,11 +12,12 @@ def cadastrar_prestacao_servicos(request):
             prestacao_servicos = form.save(commit=False)
             prestacao_servicos.passeador = request.user  # Associe o passeador ao usuário logado
             prestacao_servicos.save()
-            return redirect('home_passeador')  # Redirecione para a página inicial do passeador
+            
+            return redirect(request, 'cadastrar_prestacao_servicos.html', {'form': PrestacaoServicosForm(), 'cadastro_sucesso': True})
     else:
         form = PrestacaoServicosForm()
 
-    return render(request, 'cadastrar_prestacao_servicos.html', {'form': form})
+    return render(request, 'cadastrar_prestacao_servicos.html', {'form': form, 'cadastro_sucesso': False})
 
 def adicionar_info_passeio(request):
     if request.method == 'POST':
