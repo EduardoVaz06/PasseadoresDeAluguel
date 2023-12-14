@@ -155,11 +155,7 @@
                     <a class="nav-link" href="{% url 'agenda_passeador' user_id=request.user.id %}">Ver Agenda</a>
                 </li>
                 <li class="nav-item">
-
-                    <a class="nav-link" href="{% url 'perfil' %}">Ver perfil</a>
-
                     <a class="nav-link" href="{% url 'perfil_passeador_self' request.user.id %}">Ver Perfil</a>
-
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'editar_perfil' %}">Editar perfil</a>
@@ -210,10 +206,6 @@
                 </div>
             </form>
         </div>
-
-            <div class="botao-busca mx-auto">
-                <button type="button" class="botao" onclick="abrirModal()">Cadastrar</button>
-            </div>
         </form>
     </div>
 </div>
