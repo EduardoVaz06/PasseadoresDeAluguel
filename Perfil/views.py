@@ -20,21 +20,6 @@ def visualizar_perfil(request):
     context = {'perfil': perfil, 'tipo_usuario': tipo_usuario}
     return render(request, 'perfil/perfil.html', context)
 
-""" @login_required
-def perfil_passeador(request, user_id):
-    user_to_view = get_object_or_404(User, id=user_id)
-    perfil_to_view = get_object_or_404(Perfil, user=user_to_view)
-    tipo_usuario = TipoUsuario.objects.get(user=user_to_view)
-
-    # Recupera os dados da tabela PrestacaoServicos para o passeador específico
-    prestacao_servicos = PrestacaoServicos.objects.filter(passeador=user_to_view)
-
-    # Gera as opções de horário com base nos dados da tabela
-    opcoes_horario = gerar_opcoes_horario(prestacao_servicos)
-
-    context = {'perfil': perfil_to_view, 'tipo_usuario': tipo_usuario, 'opcoes_horario': opcoes_horario}
-    return render(request, 'perfil/perfil_passeador.html', context) """
-
 @login_required
 def editar_perfil(request):
     perfil = Perfil.objects.get(user=request.user)
@@ -77,3 +62,20 @@ def perfil_passeador(request, user_id):
     context = {'perfil': perfil_to_view, 'tipo_usuario': tipo_usuario, 'opcoes_horario': opcoes_horario, 'media_avaliacoes': media_avaliacoes}
     return render(request, 'perfil/perfil_passeador.html', context)
 
+@login_required
+def perfil_passeador_self(request, user_id):
+    user_to_view = get_object_or_404(User, id=user_id)
+    perfil_to_view = get_object_or_404(Perfil, user=user_to_view)
+    tipo_usuario = TipoUsuario.objects.get(user=user_to_view)
+
+    # Recupera os dados da tabela PrestacaoServicos para o passeador específico
+    prestacao_servicos = PrestacaoServicos.objects.filter(passeador=user_to_view)
+
+    # Gera as opções de horário com base nos dados da tabela
+    opcoes_horario = gerar_opcoes_horario(prestacao_servicos)
+
+    # Calcula a média das avaliações do passeador
+    media_avaliacoes = Avaliacao.objects.filter(passeador=user_to_view).aggregate(media=Avg('pontuacao'))['media']
+
+    context = {'perfil': perfil_to_view, 'tipo_usuario': tipo_usuario, 'opcoes_horario': opcoes_horario, 'media_avaliacoes': media_avaliacoes}
+    return render(request, 'perfil/perfil_passeador_self.html', context)
