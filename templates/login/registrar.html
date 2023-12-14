@@ -1,56 +1,90 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Registrar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/libs/jquery/3.3.1/jquery.min.js"></script>
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
-        crossorigin="anonymous">
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background: url("/media/Imagens/sl_011023_55240_07.jpg");
-            background-size: cover;
+            background-image: url('../../media/Imagens/fundo_login.jpg');
+            background-position: left;
             background-repeat: no-repeat;
+            background-size: 50% 100%;
+            background-color: #ffecd0;
+            background-attachment: fixed;
             margin: 0;
+            padding: 0;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            font-family: Poppins, sans-serif;
+        }
+
+        header {
+            background-color: white;
+            color: #193e5d;
+            padding-left: 30px;
+            padding-right: 30px;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .texto-header {
+            font-size: 18px;
+            text-align: right;
+            padding-right: 20px;
         }
 
         .container-login {
             background-color: #ffffff;
-            padding: 50px 30px;
+            padding: 30px;
             border-radius: 5px;
             box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
             min-width: 400px;
             text-align: center;
-        }
-
-        .form_container {
-            margin-top: 20px;
+            margin-top: 150px;
         }
 
         #form-title {
-            color: #fff;
+            color: #193e5d;
+            font-family: Poppins, sans-serif;
+            font-weight: bold;
+            padding-bottom: 15px;
         }
 
         .login_btn {
-            width: 100%;
-            background: #33ccff !important;
-            color: white !important;
+            background-color: #193e5d;
+            border-radius: 2px;
+            border-style: none;
+            box-shadow: none;
+            color: #fff;
+            cursor: pointer;
+            font-family: Poppins, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
         }
 
-        .login_btn:focus {
-            box-shadow: none !important;
-            outline: 0px !important;
+        .login_btn:hover {
+            background-color: #246294;
+            opacity: 1;
+            transform: translateY(0);
+            transition-duration: .20s;
         }
 
         .login_container {
@@ -58,7 +92,7 @@
         }
 
         .input-group-text {
-            background: #f7ba5b !important;
+            background: #ffbd59 !important;
             color: white !important;
             border: 0 !important;
             border-radius: 0.25rem 0 0 0.25rem !important;
@@ -70,72 +104,98 @@
             outline: 0px !important;
         }
 
-        .links {
-            text-align: center;
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Padroniza o campo "tipo_usuario" */
+        .tipo-usuario {
+            width: 100%; /* Ocupa 100% da largura do container */
+            border-radius: 0.25rem; /* Borda com o mesmo raio que os outros campos */
+            border: 1px solid #ced4da; /* Cor da borda igual aos outros campos */
+            padding: 0.375rem 0.75rem; /* Preenchimento igual aos outros campos */
+            height: calc(2.25rem + 2px); /* Ajusta a altura para consistência visual */
         }
     </style>
 
 </head>
 
 <body>
-    <div style="text-align: center;">
-        <img width="200" src="/media/Imagens/logo_p.png">
-    </div>
-
+    <header>
+        <img src="../../media/Imagens/passeadores_de_aluguel_logo.png" alt="Logo">
+        <span class="texto-header">Bem vindo ao <strong>Passeadores de Aluguel</strong>. <br>Encontre um passeador
+            qualificado na sua região.</span>
+    </header>
     <div class="container-login">
         <div class="d-flex justify-content-center">
-            <h3 id="form-title">CRIAR CONTA</h3>
+            <h3 id="form-title">Criar conta</h3>
         </div>
         <div class="d-flex justify-content-center form_container">
             <form method="POST" action="">
                 {% csrf_token %}
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        {{ form.username }}
                     </div>
-                    {{ form.username }}
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        {{ form.first_name }}
                     </div>
-                    {{ form.first_name }}
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        {{ form.last_name }}
                     </div>
-                    {{ form.last_name }}
                 </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                        </div>
+                        {{ form.email }}
                     </div>
-                    {{ form.email }}
                 </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        {{ form.telefone }}
                     </div>
-                    {{ form.telefone }}
                 </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-users"></i></span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-users"></i></span>
+                        </div>
+                        {{ form.tipo_usuario }}
                     </div>
-                    {{ form.tipo_usuario }}
                 </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        {{ form.password1 }}
                     </div>
-                    {{ form.password1 }}
                 </div>
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        {{ form.password2 }}
                     </div>
-                    {{ form.password2 }}
                 </div>
                 <div class="d-flex justify-content-center mt-3 login_container">
                     <input class="btn login_btn" type="submit" value="Criar conta">
@@ -145,26 +205,25 @@
         {{ form.errors }}
         <div class="mt-4">
             <div class="links">
-                Já tem uma conta? <a href="{% url 'login' %}" class="ml-2">Entrar</a>
+                Já tem uma conta?<a href="{% url 'login' %}" class="ml-2">Entrar</a>
             </div>
         </div>
     </div>
 
 </body>
 
-    <script>
-        var form_fields = document.getElementsByTagName('input');
-        form_fields[1].placeholder = 'Usuário..';
-        form_fields[2].placeholder = 'Nome..';
-        form_fields[3].placeholder = 'Sobrenome..';
-        form_fields[4].placeholder = 'Email..';
-        form_fields[5].placeholder = 'Telefone..';
-        form_fields[6].placeholder = 'Digite a senha...';
-        form_fields[7].placeholder = 'Confirme a senha...';
-        for (var field in form_fields) {
-            form_fields[field].className += ' form-control';
-        }
-    </script>
-</body>
+<script>
+    var form_fields = document.getElementsByTagName('input');
+    form_fields[1].placeholder = 'Usuário';
+    form_fields[2].placeholder = 'Nome';
+    form_fields[3].placeholder = 'Sobrenome';
+    form_fields[4].placeholder = 'E-mail';
+    form_fields[5].placeholder = 'Telefone';
+    form_fields[6].placeholder = 'Digite a senha';
+    form_fields[7].placeholder = 'Confirme a senha';
+    for (var field in form_fields) {
+        form_fields[field].className += ' form-control';
+    }
+</script>
 
 </html>

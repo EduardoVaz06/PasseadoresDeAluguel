@@ -110,6 +110,9 @@
         {% for passeador_info in passeadores_info %}
         <li>
             <div>
+                {% if passeador_info.foto %}
+                    <img src="{{ passeador_info.foto }}" alt="Foto do Passeador">
+                {% endif %}
                 <a href="{% url 'perfil_passeador' passeador_info.passeador_id %}">
                     {{ passeador_info.nome_passeador }}
                 </a>

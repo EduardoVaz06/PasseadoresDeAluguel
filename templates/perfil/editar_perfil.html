@@ -1,26 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Editar Perfil</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/cores.css' %}">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha384-B1XH1oPoa1dBMO59jzME4CwCJ9GQQ0XRD+eaVyhH+1RWvLp7igMz1auh6TIqEMfWC" crossorigin="anonymous">
+
     <style>
         body {
-            background: url("/media/Imagens/sl_011023_55240_07.jpg");
-            background-size: cover;
+            background-image: url('{% static "imagens/2_cachorros.jpg" %}');
+            background-position: right;
             background-repeat: no-repeat;
-            margin: 0;
-            height: 100vh;
+            background-size: 50% 100%;
+            background-color: #ffecd0;
+            background-attachment: fixed;
+            min-width: 50%;
+            min-height: 80%;
+            font-family: Poppins, sans-serif;
             display: flex;
-            align-items: center;
-            justify-content: center;
             flex-direction: column;
-            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            color: #193e5d;
+        }
+
+        .topnav {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 5px;
+            box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+            border-bottom: 4px solid #e4e4e4;
+            font-family: Poppins, sans-serif;
+        }
+
+        .topnav-menu li {
+            display: inline-block;
+            padding: 0px 30px;
+        }
+
+        .topnav-menu li a {
+            text-decoration: none;
+            font-size: 15px;
+            color: #000000;
+        }
+
+        .topnav-menu li:hover {
+            font-weight: bold;
+        }
+
+        .topnav img {
+            width: 60%;
+            max-width: 100px;
+            height: auto;
         }
 
         .container {
@@ -28,142 +69,123 @@
         }
 
         .user_card {
-            width: 350px;
+            width: 600px;
             margin: 0 auto;
             background: #ffffff;
-            padding: 20px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             border-radius: 5px;
+            text-align: justify;
+        }
+
+        .botao {
+            background-color: #193e5d;
+            border-radius: 2px;
+            border-style: none;
+            box-shadow: none;
+            color: #fff !important;
+            cursor: pointer;
+            font-family: Poppins, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 35px;
             text-align: center;
+            text-decoration: none;
         }
 
-        h1 {
-            color: #000;
-        }
-
-        .btn-container {
-            margin-top: 20px;
+        .botao:hover {
+            background-color: #246294;
+            opacity: 1;
+            transform: translateY(0);
+            transition-duration: .20s;
         }
 
         .form-container {
             background: #ffffff;
             padding: 20px;
+            padding-left: 40px;
+            padding-right: 40px;
             border-radius: 5px;
         }
 
         .form-group label {
-            color: var(--primary-color);
             font-weight: bold;
         }
 
         .form-group input {
             width: 100%;
             padding: 8px;
-            margin-top: 5px;
             border: 1px solid #ced4da;
             border-radius: 4px;
             box-sizing: border-box;
-        }
-
-        .btn-primary {
-            background-color: #193e5d;
-            color: white;
-            margin-top: 15px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .btn-secondary {
-            background-color: #193e5d;
-            color: white;
-            margin-top: 15px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        .btn-foto {
-            background-color: #193e5d;
-            color: white;
-            margin-top: 15px;
-            margin-bottom: 1px;
-            padding: 8px 13px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 10px;
-            text-align: center; /* Adicionado para centralizar o botão */
-            display: block; /* Garante que o botão ocupe a largura total disponível */
-            margin: 0 auto; /* Define a margem automática para centralizar horizontalmente */
         }
 
         .input-field-group {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-top: 10px;
         }
-        
-        .input-field {
-            width: 48%;
+
+        .navbar-text {
+            padding-left: 30px;
         }
-        .custom-file {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            height: 40px;
-        }
-        
-        .custom-file-input {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            opacity: 0;
-            height: 100%;
-            cursor: pointer;
-            display: none;
-        }
-        
+
         .custom-file-label {
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 20;
-            height: 100%;
-            padding: .375rem .75rem;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            border-radius: .25rem;
+            white-space: nowrap;
             overflow: hidden;
         }
-        
-        .custom-file-label::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: .375rem .75rem;
-            color: #fff;
-            background-color: #ffff;
-            border-left: 1px solid #ced4da;
-            border-radius: 0 .25rem .25rem 0;
+
+        .titulo-container {
+            font-weight: bold;
+            text-align: center;
+            align-items: center;
+            padding: 20px;
         }
+
     </style>
 
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-lg topnav">
+        <img src="../../media/Imagens/passeadores_de_aluguel_logo.png" alt="Logo">
+        <span class="navbar-text">Bem-vindo(a), {{ request.user }}</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="topnav-menu navbar-nav">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    {% if tipo_usuario.tipo == 'usuario' %}
+                    <a href="{% url 'home_usuario' %}" class="botao">Home</a>
+                    {% elif tipo_usuario.tipo == 'passeador' %}
+                    <a href="{% url 'home_passeador' %}" class="botao">Home</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'agenda_passeador' user_id=request.user.id %}">Ver agenda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'perfil' %}">Ver perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'editar_perfil' %}">Editar perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="botao" href="{% url 'logout' %}">Sair</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <div class="user_card form-container">
-            <h1>Editar Perfil</h1>
+            <h2 class="titulo-container">Editar Perfil</h2>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="{{ user_form.first_name.id_for_label }}">Primeiro Nome:</label>
+                    <label for="{{ user_form.first_name.id_for_label }}">Primeiro nome:</label>
                     {{ user_form.first_name }}
                 </div>
                 <div class="form-group">
@@ -171,7 +193,7 @@
                     {{ user_form.last_name }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ user_form.email.id_for_label }}">Endereço de Email:</label>
+                    <label for="{{ user_form.email.id_for_label }}">Endereço de e-mail:</label>
                     {{ user_form.email }}
                 </div>
                 <div class="form-group">
@@ -179,22 +201,23 @@
                     {{ profile_form.telefone }}
                 </div>
                 <div class="form-group">
-                    <label for="{{ profile_form.image.id_for_label }}">Foto de Perfil</label>
+                    <label for="{{ profile_form.image.id_for_label }}">Foto de perfil:</label>
                     <div class="custom-file">
-                        <label class="custom-file-label" for="{{ profile_form.image.id_for_label }}">{{ profile_form.image.value|default:_('Nenhum arquivo escolhido') }}</label>
-                        <input type="file" name="{{ profile_form.image.name }}" class="custom-file-input" id="{{ profile_form.image.id_for_label }}" style="display: none;">
-                        <br>
-                        <br>
-                        <button type="button" class="btn btn-foto" onclick="document.getElementById('{{ profile_form.image.id_for_label }}').click()">Escolher Arquivo</button>
-                        <br>
+                        <input type="file" name="{{ profile_form.image.name }}" class="custom-file-input"
+                            id="{{ profile_form.image.id_for_label }}">
+                        <label class="custom-file-label" for="{{ profile_form.image.id_for_label }}">
+                            {{ profile_form.image.value|default:_('Nenhum arquivo escolhido') }}
+                        </label>
                     </div>
+                    <br><br><br>
                 </div>
                 <div class="input-field-group">
-                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                    <a href="{% url 'perfil' %}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="botao">Salvar alterações</button>
+                    <a href="{% url 'perfil' %}" class="botao">Cancelar</a>
                 </div>
             </form>
         </div>
     </div>
 </body>
+
 </html>
