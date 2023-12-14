@@ -11,13 +11,6 @@
             margin: 0 auto;
         }
 
-        /* Estilizando os campos de entrada de texto */
-        input[type="text"] {
-            margin-bottom: 0;
-            padding: 0;
-            align-items: center;
-        }
-
         form button {
             background-color: #193e5d;
             border-radius: 2px;
@@ -38,24 +31,20 @@
             margin-top: 50px;
         }
 
-        /* Estilizando a lista de resultados */
         ul.search-results {
             list-style: none;
             padding: 0;
             margin-top: 50px;
         }
 
-        /* Estilizando cada item da lista de resultados */
         ul.search-results li {
             border: 1px solid #ccc;
             margin-bottom: 10px;
             padding: 10px;
-            display: flex;
-            justify-content: space-between;
             border-radius: 5px;
+            align-items: center;
         }
 
-        /* Estilizando os links dentro dos resultados */
         ul.search-results li a {
             color: #193e5d;
             font-size: 18px;
@@ -63,13 +52,11 @@
             font-weight: bold;
         }
 
-        /* Estilizando as estrelas de avaliação */
         .star-rating {
             display: flex;
             align-items: center;
         }
 
-        /* Estilizando as estrelas de avaliação */
         .star-icon {
             color: #ffbd59;
         }
@@ -88,6 +75,20 @@
         .average-value {
             margin-left: 5px;
         }
+
+        .preco {
+            color: #193e5d;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .div-resultados {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 5px;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -101,17 +102,18 @@
         </button>
     </form>
 
-    <!-- Lista de serviços filtrados -->
     {% if pesquisa_clicada %}
     {% if passeadores_info %}
-    
+
     <ul class="search-results">
-        <span class="texto-result"><h6>Passeadores disponíveis:</h6></span>
+        <span class="texto-result">
+            <h6>Passeadores disponíveis:</h6>
+        </span>
         {% for passeador_info in passeadores_info %}
         <li>
-            <div>
+            <div class="div-resultados">
                 {% if passeador_info.foto %}
-                    <img src="{{ passeador_info.foto }}" alt="Foto do Passeador">
+                <img src="{{ passeador_info.foto }}" alt="Foto do Passeador">
                 {% endif %}
                 <a href="{% url 'perfil_passeador' passeador_info.passeador_id %}">
                     {{ passeador_info.nome_passeador }}
@@ -119,13 +121,12 @@
                 {% with media_avaliacao=passeador_info.media_avaliacao %}
                 <div class="star-rating">
                     {% for i in "12345" %}
-                        {% if forloop.counter <= media_avaliacao %}
-                            <i class="fas fa-star star-icon"></i>
+                    {% if forloop.counter <= media_avaliacao %} <i class="fas fa-star star-icon"></i>
                         {% else %}
-                            <i class="fas fa-star empty-star-icon"></i>
+                        <i class="fas fa-star empty-star-icon"></i>
                         {% endif %}
-                    {% endfor %}
-                    <span class="average-value">{{ media_avaliacao|floatformat:1 }}</span>
+                        {% endfor %}
+                        <span class="average-value">{{ media_avaliacao|floatformat:1 }}</span>
                 </div>
                 {% endwith %}
                 {% if passeador_info.duracao_passeio %}
@@ -133,6 +134,13 @@
                 {% else %}
                 <p>Duração do passeio: não especificada</p>
                 {% endif %}
+                <p class="preco">
+                    {% if passeador_info.duracao_passeio == "1h" %}
+                    R$ 25,00
+                    {% else %}
+                    R$ 15,00
+                    {% endif %}
+                </p>
             </div>
         </li>
         {% endfor %}
@@ -144,7 +152,6 @@
     </p>
     {% endif %}
     {% endif %}
-
 </body>
 
 </html>

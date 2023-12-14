@@ -1,103 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
     <title>Passeios Finalizados</title>
 
-    <link rel="stylesheet" href="{% static 'css/agenda_passeador.css' %}">
-    <link rel="stylesheet" href="{% static 'css/navbar-agenda.css' %}">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         body {
-            background: #e4e4e4;
+            background-image: url('../../media/Imagens/dog.png');
+            background-repeat: no-repeat;
+            background-color: #ffecd0;
+            background-attachment: fixed;
             font-family: Poppins, sans-serif;
-            background: url('{% static "imagens/sl_011023_55240_07.jpg" %}');
-            background-size: cover; /* Para cobrir todo o background */
-            background-repeat: no-repeat; /* Para não repetir a imagem */
-        }
-        
-        .navbar {
-            background-color: #fff;
-            overflow: hidden;
-        }
-        
-        .navbar a {
-            float: left;
-            display: block;
-            color: rgb(0, 0, 0);
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: bold;
-        }
-        
-        .navbar a:hover {
-            background-color: #cbcbcb;
-            font-weight: bold;
-            color: #193e5d;
+            margin: 0;
         }
 
-        .navbar a.active {
-            background-color: #cbcbcb; /* Cor de fundo quando o link está ativo */
-            font-weight: bold;
-            color: #193e5d;
+        .container {
+            background-color: #ffffff;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+            text-align: center;
         }
-        
+
+        .botao {
+            background-color: #193e5d;
+            border-radius: 2px;
+            border-style: none;
+            box-shadow: none;
+            color: #fff;
+            cursor: pointer;
+            font-family: Poppins, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px 15px;
+            text-align: center;
+            text-decoration: none;
+        }
+
         .botao:hover {
-            background-color: var(--primary-color-hover);
+            background-color: #246294;
             opacity: 1;
             transform: translateY(0);
-            transition-duration: 0.2s;
+            transition-duration: .20s;
+        }
+
+        .titulo-container {
+            font-size: 26px;
+            font-weight: bold;
+            color: #193e5d;
+        }
+
+        table {
+            width: 100%;
+            padding: 50px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            color: #193e5d;
+        }
+
+        th {
+            background-color: #f2f2f2;
         }
     </style>
+    <link rel="stylesheet" href="{% static 'css/navbar-agenda.css' %}">
 </head>
+
 <body>
 
-    <!-- Navbar -->
     <div class="navbar">
-        <a href="{% url 'agenda_passeador' user_id=request.user.id %}">Minha Agenda</a>
-        <a href="{% url 'passeios_solicitados' user_id=request.user.id %}">Passeios Solicitados</a>
-        <a href="{% url 'passeios_finalizados' user_id=request.user.id %}">Passeios Finalizados</a>
-        <a href="{% url 'home_passeador' %}">Voltar à Home</a>
+        <a href="{% url 'agenda_passeador' user_id=request.user.id %}">Minha agenda</a>
+        <a href="{% url 'passeios_solicitados' user_id=request.user.id %}">Passeios solicitados</a>
+        <a href="{% url 'passeios_finalizados' user_id=request.user.id %}">Passeios finalizados</a>
+        <a href="{% url 'home_passeador' %}">Home</a>
     </div>
 
     <div class="container">
-        <h1>Passeios Finalizados</h1>
+        <span class="titulo-container">Passeios finalizados</span><br><br>
 
         {% if detalhes_horarios %}
-            <table>
-                <thead>
-                    <tr>
-                        <th class="text-center">Horário</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Usuário Solicitante</th>
-                        <!-- Adicione mais colunas conforme necessário -->
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for detalhe in detalhes_horarios %}
-                        {% if detalhe.status == 'Finalizado' %}
-                            <tr>
-                                <td class="text-center">{{ detalhe.horario }}</td>
-                                <td class="text-center">{{ detalhe.status }}</td>
-                                <td class="text-center">{{ detalhe.nome_solicitante }}</td>
-                                <!-- Adicione mais colunas conforme necessário -->       
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
+        <table>
+            <thead>
+                <tr>
+                    <th class="text-center">Solicitado por</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Horário</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detalhe in detalhes_horarios %}
+                {% if detalhe.status == 'Finalizado' %}
+                <tr>
+                    <td class="text-center">{{ detalhe.nome_solicitante }}</td>
+                    <td class="text-center">{{ detalhe.status }}</td>
+                    <td class="text-center">{{ detalhe.horario }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
         {% else %}
-            <p>Nenhum horário encontrado na agenda.</p>
+        <p>Nenhum horário encontrado na agenda.</p>
         {% endif %}
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const currentPage = window.location.pathname;
             const navbarLinks = document.querySelectorAll('.navbar a');
-    
+
             navbarLinks.forEach(link => {
                 const linkPath = link.getAttribute('href').split('?')[0]; // Ignora parâmetros de consulta, se houver
                 if (currentPage === linkPath) {
@@ -107,4 +130,5 @@
         });
     </script>
 </body>
+
 </html>

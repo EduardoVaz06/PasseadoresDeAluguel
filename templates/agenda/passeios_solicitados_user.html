@@ -2,43 +2,88 @@
 <html lang="en">
 <head>
     {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suas solicitações</title>
 
-    <link rel="stylesheet" href="{% static 'css/agenda_passeador.css' %}">
-    <link rel="stylesheet" href="{% static 'css/navbar-agenda.css' %}">
 </head>
+<style>
+    body {
+        background-image: url('../../media/Imagens/dog.png');
+        background-repeat: no-repeat;
+        background-color: #ffecd0;
+        background-attachment: fixed;
+        font-family: Poppins, sans-serif;
+        margin: 0;
+    }
+
+    .container {
+        background-color: #ffffff;
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        text-align: center;
+    }
+
+    .titulo-container {
+        font-size: 26px;
+        font-weight: bold;
+        color: #193e5d;
+    }
+
+    table {
+        width: 100%;
+        padding: 50px;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        color: #193e5d;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/navbar-agenda.css' %}">
 <body>
 
     <!-- Navbar -->
     <div class="navbar">
-        <a href="{% url 'agenda_usuario' user_id=request.user.id %}">Minha Agenda</a>
-        <a href="#">Passeios Solicitados</a>
-        <a href="{% url 'passeios_finalizados_user' user_id=request.user.id %}">Passeios Finalizados</a>
-        <a href="{% url 'home_usuario' %}" class="btn btn-primary">Voltar à Home</a>
+        <a href="{% url 'agenda_usuario' user_id=request.user.id %}">Minha agenda</a>
+        <a href="#">Passeios solicitados</a>
+        <a href="{% url 'passeios_finalizados_user' user_id=request.user.id %}">Passeios finalizados</a>
+        <a href="{% url 'home_usuario' %}" class="btn btn-primary">Home</a>
     </div>
     
     <div class="container">
-        <h1>Suas solicitações</h1>
+        <span class="titulo-container">Suas solicitações</span><br><br>
 
         {% if detalhes_horarios %}
         <table>
             <thead>
                 <tr>
-                    <th>Horário</th>
-                    <th>Status</th>
                     <th>Passeador</th>
-                    <!-- Adicione mais colunas conforme necessário -->
+                    <th>Status</th>
+                    <th>Horário</th>
                 </tr>
             </thead>
             <tbody>
                 {% for detalhe in detalhes_horarios %}
                     {% if detalhe.status|lower == 'solicitado'|lower %}
                         <tr>
-                            <td>{{ detalhe.horario }}</td>
-                            <td>{{ detalhe.status }}</td>
                             <td>{{ detalhe.nome_passeador }}</td>
+                            <td>{{ detalhe.status }}</td>
+                            <td>{{ detalhe.horario }}</td>
                             <!-- Adicione mais colunas conforme necessário -->
                         </tr>
                     {% endif %}

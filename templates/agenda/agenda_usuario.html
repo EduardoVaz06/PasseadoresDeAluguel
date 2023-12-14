@@ -1,119 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Agenda</title>
+    <title>Minha agenda</title>
+
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
+            background-image: url('../../media/Imagens/dog.png');
+            background-repeat: no-repeat;
+            background-color: #ffecd0;
+            background-attachment: fixed;
+            font-family: Poppins, sans-serif;
+            margin: 0;
         }
 
-        h1 {
-            color: #333;
+        .container {
+            background-color: #ffffff;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+            text-align: center;
+        }
+
+        .titulo-container {
+            font-size: 26px;
+            font-weight: bold;
+            color: #193e5d;
         }
 
         table {
             width: 100%;
+            padding: 50px;
             border-collapse: collapse;
-            margin-top: 20px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        th, td {
+        th,
+        td {
             padding: 15px;
-            text-align: left;
+            text-align: center;
             border-bottom: 1px solid #ddd;
+            color: #193e5d;
         }
 
         th {
             background-color: #f2f2f2;
         }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        p {
-            color: #777;
-        }
-        .navbar {
-            overflow: hidden;
-            background-color: #33ccff;
-        }
-        
-        .navbar a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        
-        .navbar a.active {
-            background-color: #193e5d;
-            color: white;
-        }
-        
-        .container {
-            max-width: 100%; /* Ajuste para 100% da largura da tela */
-            margin: 0;
-            padding: 0;
-        }
     </style>
     <link rel="stylesheet" href="{% static 'css/navbar-agenda.css' %}">
 </head>
+
 <body>
-<!-- Navbar -->
     <div class="navbar">
-        <a href="#">Minha Agenda</a>
-        <a href="{% url 'passeios_solicitados_user' user_id=request.user.id %}">Passeios Solicitados</a>
-        <a href="{% url 'passeios_finalizados_user' user_id=request.user.id %}">Passeios Finalizados</a>
-        <a href="{% url 'home_usuario' %}" class="btn btn-primary">Voltar à Home</a>
+        <a href="#">Minha agenda</a>
+        <a href="{% url 'passeios_solicitados_user' user_id=request.user.id %}">Passeios solicitados</a>
+        <a href="{% url 'passeios_finalizados_user' user_id=request.user.id %}">Passeios finalizados</a>
+        <a href="{% url 'home_usuario' %}" class="btn btn-primary">Home</a>
     </div>
     <div class="container">
-        <h1>Passeios Aceitos</h1>
-
+        <span class="titulo-container">Passeios aceitos</span><br><br>
         {% if detalhes_horarios %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Horário</th>
-                        <th>Status</th>
-                        <th>Passedor</th>
-                        <!-- Adicione mais colunas conforme necessário -->
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for detalhe in detalhes_horarios %}
-                        {% if detalhe.status|lower == 'Aceito'|lower %}
-                            <tr>
-                                <td>{{ detalhe.horario }}</td>
-                                <td>{{ detalhe.status }}</td>
-                                <td>{{ detalhe.nome_passeador }}</td>
-                                <!-- Adicione mais colunas conforme necessário -->
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Passeador</th>
+                    <th>Status</th>
+                    <th>Horário</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detalhe in detalhes_horarios %}
+                {% if detalhe.status|lower == 'Aceito'|lower %}
+                <tr>
+                    <td>{{ detalhe.nome_passeador }}</td>
+                    <td>{{ detalhe.status }}</td>
+                    <td>{{ detalhe.horario }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
         {% else %}
-            <p>Nenhum horário encontrado na agenda.</p>
+        <p>Nenhum horário encontrado na agenda.</p>
         {% endif %}
     </div>
+</body>
+
+</html>
