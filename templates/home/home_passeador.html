@@ -1,169 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Passeadores Anônimos</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/cores.css' %}">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        :root {
-            --primary-color: #193e5d;
-            --primary-color-hover: #246294;
-            --secondary-color: #462519;
-            --cinza: #e4e4e4;
-            --dark: #5a5a5f;
-            --light: #fff;
-            --default-pad: 2.5rem;
-            --medium-pad: calc(var(--default-pad) / 2);
-        }
-        main.index {
-            background-image: url("/static/imagens/2_cachorros.jpg");
+        body {
+            background-image: url('{% static "imagens/2_cachorros.jpg" %}');
             background-position: left;
             background-repeat: no-repeat;
             background-size: 50% 100%;
             background-color: #ffecd0;
             background-attachment: fixed;
-            padding: var(--default-pad);
             min-width: 50%;
-            min-height: 100%;
-        }
-
-        body {
-            background: #e4e4e4;
+            min-height: 80%;
             font-family: Poppins, sans-serif;
-            background: url('{% static "imagens/sl_011023_55240_07.jpg" %}');
-            background-size: cover; /* Para cobrir todo o background */
-            background-repeat: no-repeat; /* Para não repetir a imagem */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
         }
 
-        .infos-home {
-            max-width: 850px;
-            font-size: 28px !important;
-            margin: 0 auto;
-            color: rgb(0, 0, 0) !important;
-            font-weight: bold !important;
-            padding-bottom: 30px;
-        }
-        
-        .infos-home2 {
-            max-width: 850px;
-            margin: 0 auto;
-            padding-bottom: 20px;
-            font-size: 18px;
-        }
-        .container-texto {
-            color: var(--primary-color);
-            width: 30%;
-            margin-left: auto;
-            padding: 3% 10%;
-        }
-        
-        .texto {
-            font-size: 18px;
-            text-align: justify;
-        }
-        
-        .select-field {
-            font-weight: bold;
-            font-size: 14px;
-            color: var(--primary-color);
-        }
-        
-        .input-field {
-            font-weight: bold;
-            font-size: 16px;
-            color: var(--primary-color);
-            padding-bottom: 40px;
-            width: 100%;
-        }
-        
-        .botao-busca {
-            font-size: 14px;
-        }
-
-        .navbar {
-            background: #5a5a5f;
-        }
-
-        .navbar a {
-            color: white;
-        }
-        
         .container {
             background-color: #ffffff;
             display: flex;
-            max-width: 510px;
+            max-width: 600px;
             flex-direction: column;
             border-radius: 5px;
             box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-            padding: 20px 20px;
-            min-height: 80vh;
-            background: linear-gradient(to bottom, rgba(230, 230, 230, 0.92), #ffffff 100%);
+            padding: 20px 40px;
+            margin-top: 80px;
+            font-family: Poppins, sans-serif;
         }
-        
-        .container-lista {
-            background-color: var(--cinza);
-            padding: 4px;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            width: 855px;
-            display: none;
-            margin: 0 auto;
-            border-radius: 3px;
-        }
-        
-        .container-resultados-lista {
+
+        .topnav {
             background-color: #ffffff;
-            border: 1px solid rgb(209, 213, 219);
-            border-radius: 3px;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 5px;
+            box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+            border-bottom: 4px solid #e4e4e4;
+            font-family: Poppins, sans-serif;
+        }
+
+        .topnav-menu li {
+            display: inline-block;
+            padding: 0px 30px;
+        }
+
+        .topnav-menu li a {
+            text-decoration: none;
+            font-size: 15px;
+            color: #000000;
+        }
+
+        .topnav-menu li:hover {
             font-weight: bold;
-            color: #193e5d;
-            width: 824px;
-            padding: 10px;
-        }
-        
-        .container-resultados-lista:hover {
-            background-color: #f7f7f7;
-        }
-        
-        .container-info-resultados-lista {
-            font-size: 14px;
-            padding: 5px;
         }
 
-        h3, span {
-            color: white;
-        }
-
-        .logout {
-            margin-top: 20px;
-        }
-
-        .custom-box {
-            background: #f8f9fa;
-            border: 1px solid #d6d8db;
-            padding: 15px;
-            border-radius: 5px;
-        }
-
-        .centered-text {
-            text-align: center;
-            line-height: 100px;
-            height: 80px;
-            display: block;
+        .topnav img {
+            width: 60%;
+            max-width: 100px;
+            height: auto;
         }
 
         .botao {
-            background-color: var(--primary-color);
-            border-radius: 5px; /* Certifique-se de adicionar um valor válido, como '5px' */
+            background-color: #193e5d;
+            border-radius: 2px;
             border-style: none;
             box-shadow: none;
-            color: #ffff !important;
+            color: #fff !important;
             cursor: pointer;
             font-family: Poppins, sans-serif;
             font-size: 16px;
@@ -171,146 +85,66 @@
             padding: 10px 35px;
             text-align: center;
             text-decoration: none;
-            line-height: 40px; /* Ajuste este valor para centralizar verticalmente */
         }
-        
+
         .botao:hover {
-            background-color: var(--primary-color-hover);
+            background-color: #246294;
             opacity: 1;
             transform: translateY(0);
-            transition-duration: 0.2s;
-        }
-        
-        .botao:hover:after {
-            opacity: 0.5;
-        }
-        
-        .botao:active {
-            transform: translateY(1px);
-            transition-duration: 0.2s;
-        }
-        
-        .botao:active:after {
-            opacity: 1;
-        }
-        
-        .botao a {
-            text-decoration: none;
-            color: #fff;
-        }
-        .botao-busca {
-            font-size: 14px;
+            transition-duration: .20s;
         }
 
+        .navbar-text {
+            margin-left: 30px;
+        }
 
-        /* Navbar */
-        .topnav {
-            background-color: #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: var(--medium-pad) var(--default-pad);
-            box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
-            border-bottom: 4px solid #e4e4e4;
+        .infos-home {
+            color: #193e5d;
         }
-        
-        .topnav .navbar-brand,
-        .topnav .navbar-text {
-            color: #000000; /* Cor dos textos pretos */
-        }
-        
-        .topnav-menu li {
-            display: inline-block;
-            padding: 0px 30px;
-        }
-        
-        .topnav-menu li a {
-            text-decoration: none;
+
+        .texto-passeador {
+            text-align: justify;
             font-size: 15px;
-            color: #000000;
-        }
-        
-        .topnav-menu li:hover {
-            font-weight: bold;
+            color: #193e5d;
         }
 
-        .custom-form {
-            text-align: center; /* Adicionado para centralizar o formulário */
-            width: 300px; /* Defina a largura desejada em pixels */
-            padding: 8px; /* Ajusta o preenchimento interno para melhor legibilidade */
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-        
-        .custom-form form .input-field {
-            margin-bottom: 5px;
+        .formulario {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 30px;
+            border-radius: 5px;
+            min-width: 550px;
             display: flex;
-            flex-direction: column; /* Alteração importante para empilhar os elementos verticalmente */
-            width: 300px; /* Defina a largura desejada em pixels */
-        }
-        
-        .custom-form form .input-field label {
-            margin-bottom: 2px; /* Adiciona algum espaçamento entre a label e o input */
-        }
-        
-        .custom-form form .input-field label.inicio,
-        .custom-form form .input-field label.fim {
-            color: var(--primary-color) !important; /* Adicione !important para garantir prioridade */
+            flex-direction: column;
+            align-items: normal;
+            color: #193e5d;
             font-weight: bold;
         }
-        
-        .custom-form form .form-group.col-md-6 .col-form-label {
-            color: var(--primary-color) !important;
-            font-weight: bold;
-        }
-        
-        .custom-form form .input-field {
-        margin-bottom: 5px;
-        display: flex;
-        flex-direction: column; /* Alteração importante para empilhar os elementos verticalmente */
+
+        .botao-busca {
+            text-align: center;
         }
 
-        .custom-form form .input-field label {
-            margin-bottom: 5px; /* Adiciona algum espaçamento entre a label e o input */
-        }
-        
-        /* Adicione um estilo específico se desejar maior controle sobre o posicionamento */
-        .custom-form form .input-field label.inicio,
-        .custom-form form .input-field label.fim {
-            color: var(--primary-color) !important; /* Adicione !important para garantir prioridade */
-        }
-        .input-field-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-        
-        .input-field {
-            width: 48%; /* Ou outro valor desejado para ajustar a largura das caixas de entrada */
-        }
-        .custom-label-bairro {
-            margin-left: -15px; /* Ajuste o valor conforme necessário */
+        .input-field select {
+            width: 100%;
+            margin-bottom: 20px;
         }
 
-        .custom-label-inicio {
-            margin-left: -0px; /* Ajuste o valor conforme necessário */
+        .input-field2 select {
+            width: 100%;
+            margin-bottom: 60px;
         }
-
-
-        .custom-label-fim {
-            margin-right: 0px; /* Ajuste o valor conforme necessário */
-        }
-
-
     </style>
 
 </head>
-<body>
 
+<body>
     <nav class="navbar navbar-expand-lg topnav">
-        <a class="navbar-brand" href="#">Passeadores Anônimos</a>
+        <img src="../../media/Imagens/passeadores_de_aluguel_logo.png" alt="Logo">
         <span class="navbar-text">Bem-vindo(a), {{ request.user }}</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -320,60 +154,99 @@
                     <a class="nav-link" href="{% url 'agenda_passeador' user_id=request.user.id %}">Ver Agenda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'perfil' %}">Ver Perfil</a>
+                    <a class="nav-link" href="{% url 'perfil' %}">Ver perfil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'editar_perfil' %}">Editar Perfil</a>
+                    <a class="nav-link" href="{% url 'editar_perfil' %}">Editar perfil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="botao" href="{% url 'logout' %}">Logout</a>
+                    <a class="botao" href="{% url 'logout' %}">Sair</a>
                 </li>
                 {% endif %}
             </ul>
         </div>
     </nav>
-    
-    
-<br>
-
-<div class="container d-flex align-items-center flex-column">
-    <br>
-    <div class="text-center">
-        <h2 class="mx-auto infos-home ">Onde vai passear hoje?</h2><br>
-    </div>
-    <div class="custom-form mx-auto">
-        <form method="post">
-            {% csrf_token %}
-            <div class="input-field mx-auto">
-                <label for="{{ form.bairro.id_for_label }}" class="col-form-label custom-label-bairro">Bairro:</label>
-                {{ form.bairro }}
-            </div>
-            <div class="input-field mx-auto">
-                <label for="{{ form.duracao_passeio.id_for_label }}" class="col-form-label">Duração do Passeio:</label>
-                {{ form.duracao_passeio }}
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="{{ form.inicio.id_for_label }}" class="col-form-label inicio custom-label-inicio">Início:</label>
-                    {{ form.inicio }}
+    <div class="container d-flex align-items-center flex-column">
+        <br>
+        <div class="text-center">
+            <h4 class="infos-home"><strong>Olá, {{ request.user }}.<br>Onde você vai passear hoje?</strong>
+            </h4><br>
+            <span class="texto-passeador">Escolha o bairro, a duração desejada e o intervalo de horário que pretende
+                atender. Seu serviço será disponibilizado para os usuários que buscam por esses filtros.</span>
+        </div>
+        <div class="formulario">
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field mx-auto">
+                    <label for="{{ form.bairro.id_for_label }}"
+                        class="col-form-label custom-label-bairro">Bairro:</label><br>
+                    {{ form.bairro }}
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="{{ form.fim.id_for_label }}" class="col-form-label custom-label-fim">Fim:</label>
-                    {{ form.fim }}<br><br>
+                <div class="input-field mx-auto">
+                    <label for="{{ form.duracao_passeio.id_for_label }}" class="col-form-label">Duração do
+                        passeio:</label><br>
+                    {{ form.duracao_passeio }}
+                </div>
+                <div class="form-row">
+                    <div class="input-field2 col-md-6">
+                        <label for="{{ form.inicio.id_for_label }}"
+                            class="col-form-label inicio custom-label-inicio">Início:</label><br>
+                        {{ form.inicio }}
+                    </div>
+                    <div class="input-field2 col-md-6">
+                        <label for="{{ form.fim.id_for_label }}"
+                            class="col-form-label custom-label-fim">Fim:</label><br>
+                        {{ form.fim }}
+                    </div>
+                </div>
+                <div class="botao-busca mx-auto">
+                    <button type="button" class="botao" onclick="abrirModal()">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="mensagemModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mensagemModalLabel">Dados cadastrados com sucesso.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="mensagemCadastro">A partir de agora os usuários poderão te encontrar pelos filtros
+                        informados. Acompanhe a sua agenda para aceitar as solicitações.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        id="confirmarBtn">Confirmar</button>
                 </div>
             </div>
-            <div class="botao-busca mx-auto">
-                <button type="submit" class="botao">Cadastrar</button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-<br>
-<br>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        function abrirModal() {
+            $("#mensagemModal").modal('show');
+        }
+        $("#confirmarBtn").click(function () {
+            $("#mensagemModal").modal('hide');
+            $("form").submit();
+        });
+    </script>
+    </script>
 
-</body>
 </html>
