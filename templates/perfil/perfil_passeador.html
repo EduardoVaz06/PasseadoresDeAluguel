@@ -1,190 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     {% load static %}
-
-    
     <title>Perfil do Passeador</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/cores.css' %}">
-    <!-- Adicione o link do Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- Adicione o link do Font Awesome CSS -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: #7abecc !important;
+            background-image: url('{% static "imagens/2_cachorros.jpg" %}');
+            background-position: right;
+            background-repeat: no-repeat;
+            background-size: 50% 100%;
+            background-color: #96B0C6;
+            background-attachment: fixed;
+            font-family: Poppins, sans-serif;
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            color: #193e5d;
+            justify-content: center;
+            align-items: center;
         }
 
-        .container {
+        .dois-containers-juntos {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            text-align: center;
         }
 
         .user-card {
-            background: #74cfbf;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 5px;
             text-align: center;
-            color: white;
+            margin: 20px;
+            min-width: 400px;
+            max-height: 850px;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+            text-align: center;
+            align-items: center;
+            margin: 20px;
+            min-width: 400px;
+            max-height: 800px;
         }
 
         .profile-image-container {
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             margin: 0 auto;
             border: 5px solid white;
             border-radius: 50%;
             overflow: hidden;
+            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         .profile-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Mantenha a proporção da imagem e cubra todo o contêiner */
-            object-position: center center; /* Centralize a imagem dentro do contêiner */
+            object-fit: cover;
+            object-position: center center;
         }
 
-        .btn-container {
-            margin-top: 20px;
-        }
-
-        .float-container {
-            border: 0px solid #fff;
-            padding: 20px;
-        }
-        
-        .float-child {
-            width: 50%;
-            float: left;
-            padding: 100px;
-            border: 0px inset black;
-        }
-        
-        .opcoes-horario {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-        
-        .opcao {
-            margin-right: 20px;
-        }
-        
-        .dados-endereco {
-            margin-top: 20px;
-        }
-        
-        .btn-selecionar {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .btn-selecionar:hover {
-            background-color: #45a049;
-        }
         .botao {
-            background-color: var(--primary-color);
-            border-radius: 5px; /* Certifique-se de adicionar um valor válido, como '5px' */
+            background-color: #193e5d;
+            border-radius: 2px;
             border-style: none;
             box-shadow: none;
-            color: #ffff !important;
+            color: #fff;
             cursor: pointer;
             font-family: Poppins, sans-serif;
             font-size: 16px;
             font-weight: bold;
-            padding: 10px 35px;
+            padding: 10px 25px;
             text-align: center;
             text-decoration: none;
-            line-height: 40px; /* Ajuste este valor para centralizar verticalmente */
         }
-          
+
+        .botao:hover {
+            background-color: #246294;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .titulo-container {
+            font-size: 28px;
+            font-weight: bold;
+            color: #193e5d;
+        }
+
+        .titulo-container2 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #193e5d;
+        }
+
+        .opcoes-horario-container {
+            max-height: 150px;
+            overflow-y: auto;
+            margin: 20px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: normal;
+            background-color: #f7f7f7;
+            padding: 10px;
+        }
+
+        .dados-endereco {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #193e5d;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #246294;
+        }
+
+        .dados-endereco label {
+            display: block;
+            margin-bottom: 1px;
+        }
+
+        .dados-endereco input,
+        .dados-endereco textarea {
+            width: 80%;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="float-container">
-
-        <div class="float-child">
-            <div class="row justify-content-center">
-                <div class="user-card">
-                    <h1 class="mb-4">Perfil do Passeador</h1>
-                    <div class="mb-4 profile-image-container">
-                        <img src="{{ tipo_usuario.image.url }}" alt="Foto de Perfil" class="profile-image">
-                    </div>
-                    <p><i class="fas fa-user"></i> Nome: {{ tipo_usuario.user.first_name }} {{ tipo_usuario.user.last_name }}</p>
-                    <p><i class="fas fa-phone"></i> Telefone: {{ tipo_usuario.telefone }}</p>
-                    <p><i class="fas fa-phone"></i> ID: {{ tipo_usuario.user.id}}</p>
-                    <p></i> Nota do passeador: {% if media_avaliacoes %}{{ media_avaliacoes|floatformat:1 }} <i
-                            class="fas fa-star" style="color: #ffdd00;"></i>{% else %}Sem avaliações{% endif %}</p>
-                    <div class="btn-container">
-                        <a href="{% url 'home_passeador' %}" class="btn btn-primary">Voltar à Home</a>
-                    </div>
-                </div>
+    <div class="dois-containers-juntos">
+        <div class="user-card">
+            <span class="titulo-container">{{ tipo_usuario.user.first_name }} {{ tipo_usuario.user.last_name }}</span>
+            <div class="mb-4 profile-image-container">
+                <img src="{{ tipo_usuario.image.url }}" alt="Foto de Perfil" class="profile-image">
+            </div>
+            <p><strong>Avaliação:</strong> {% if media_avaliacoes %}{{ media_avaliacoes|floatformat:1 }}
+                <i class="fas fa-star" style="color: #ffbd59;"></i>{% else %}Sem avaliações{% endif %}
+            </p>
+            <br><br><br>
+            <div class="btn-container">
+                <a href="{% url 'home_passeador' %}" class="botao">Voltar para página inicial</a>
             </div>
         </div>
-
-        <div class="float-child">
-            <div class="row justify-content-center">
-                <div class="user-card">
-                    <h1>Opções de Horário</h1>
-
-                    <form method="post" action="{% url 'selecionar_horario' %}" class="horario-form">
-                        {% csrf_token %}
-                        <!-- Adicione um campo oculto para o ID do passeador -->
-                        <input type="hidden" name="id_passeador" value="{{ tipo_usuario.user.id }}">
-
-                        <div class="container">
-                            <div class="opcoes-horario">
-                                {% for opcao in opcoes_horario %}
-                                <div class="opcao">
-                                    <label>
-                                        <input type="radio" name="horario_selecionado"
-                                            value="{{ opcao.inicio }} - {{ opcao.fim }}">
-                                        {{ opcao.inicio }} - {{ opcao.fim }}
-                                    </label>
-                                </div>
-                                {% endfor %}
-                            </div>
-
-                            <!-- Novos campos -->
-                            <div class="dados-endereco">
-                                <label for="id_rua">Rua:</label>
-                                <input type="text" name="rua" id="id_rua" required>
-
-                                <label for="id_numero">Número:</label>
-                                <input type="number" name="numero" id="id_numero" required>
-
-                                <label for="id_complemento">Complemento:</label>
-                                <input type="text" name="complemento" id="id_complemento">
-
-                                <label for="id_extras">Extras:</label>
-                                <textarea name="extras" id="id_extras"></textarea>
-                            </div>
+        <div class="form-container">
+            <span class="titulo-container">Solicitação</span><br><br>
+            <span class="titulo-container2">Horários disponíveis</span>
+            <form method="post" action="{% url 'selecionar_horario' %}" class="horario-form">
+                {% csrf_token %}
+                <input type="hidden" name="id_passeador" value="{{ tipo_usuario.user.id }}">
+                <div class="opcoes-horario-container">
+                    <div class="opcoes-horario">
+                        {% for opcao in opcoes_horario %}
+                        <div class="opcao">
+                            <label>
+                                <input type="radio" name="horario_selecionado"
+                                    value="{{ opcao.inicio }} - {{ opcao.fim }}">
+                                {{ opcao.inicio }} às {{ opcao.fim }}
+                            </label>
                         </div>
+                        {% endfor %}
                     </div>
-                        <button type="button" class="botao" onclick="abrirModal()">Selecionar</button>
-                </form>
+                </div>
+            
+            <span class="">Informe o endereço completo para a retirada do seu pet. <br>
+                Utilize o campo de <strong>observações</strong> para adicionar informações <br>
+                extras sobre o seu animalzinho ou qualquer detalhe que <br>
+                você considere relevante.</span>
+            <div class="dados-endereco">
+                <label for="id_rua">Rua</label>
+                <input type="text" name="rua" id="id_rua" required>
+
+                <label for="id_numero">Número</label>
+                <input type="text" name="numero" id="id_numero" required>
+
+                <label for="id_complemento">Complemento</label>
+                <input type="text" name="complemento" id="id_complemento">
+
+                <label for="id_extras">Observações</label>
+                <textarea name="extras" id="id_extras"></textarea>
             </div>
+            
+
+
+                <button type="button" class="botao" onclick="abrirModal()">Solicitar</button>
+            </form>
         </div>
 
     </div>
-  </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
     <div class="modal fade" id="mensagemModal" tabindex="-1" role="dialog" aria-labelledby="mensagemModalLabel"
         aria-hidden="true">
@@ -207,15 +246,9 @@
 
     <script>
         function abrirModal() {
-            // Abre o modal ao clicar no botão "Cadastrar"
             $("#mensagemModal").modal('show');
-    
-            // Agende uma função para fechar o modal após 3 segundos
             setTimeout(function () {
-                // Fecha o modal
                 $("#mensagemModal").modal('hide');
-                
-                // Submeta o formulário
                 $("form.horario-form").submit();
             }, 3000);
         }

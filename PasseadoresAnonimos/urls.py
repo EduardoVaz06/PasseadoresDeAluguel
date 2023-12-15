@@ -12,8 +12,7 @@ from Avaliação import views as avaliação_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('registrar/', login_views.registrar, name='registrar'),
-    path('login/', login_views.logar, name='login'),
-    path('', login_views.index, name='index'),
+    path('', login_views.logar, name='login'),
     path('infos/', login_views.infos, name='infos'),
     path('logout/', login_views.deslogar, name='logout'),
     path('home/usuario', login_views.home_usuario, name='home_usuario'),
@@ -24,6 +23,7 @@ urlpatterns = [
     path('horarios/<int:passeador_id>/', login_views.horarios_view, name='horarios'),
     path('selecionar_horario/', login_views.selecionar_horario, name='selecionar_horario'),
     path('editar_perfil/', perfil_views.editar_perfil, name='editar_perfil'),
+    path('editar_perfil_passeador/', perfil_views.editar_perfil_passeador, name='editar_perfil_passeador'),
     path('agenda_passeador/<int:user_id>/', agenda_passeador, name='agenda_passeador'),
     path('passeios_finalizados/<int:user_id>/', agenda_views.passeios_finalizados, name='passeios_finalizados'),
     path('passeios_solicitados/<int:user_id>/', agenda_views.passeios_solicitados, name='passeios_solicitados'),

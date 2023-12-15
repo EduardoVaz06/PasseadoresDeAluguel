@@ -17,39 +17,35 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
         integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap" rel="stylesheet">
+   
         <style>
             body {
-                background: url("/media/Imagens/sl_011023_55240_07.jpg");
-                background-size: cover;
+                background-image: url('{% static "imagens/2_cachorros.jpg" %}');
+                background-position: left;
                 background-repeat: no-repeat;
+                background-size: 50% 100%;
+                background-color: #ffecd0;
+                background-attachment: fixed;
+                min-width: 50%;
+                min-height: 80%;
+                font-family: Poppins, sans-serif;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
                 margin: 0;
-                height: 100vh;
-            }
-            :root {
-                --primary-color: #193e5d;
-                --primary-color-hover: #246294;
-                --secondary-color: #462519;
-                --cinza: #e4e4e4;
-                --dark: #5a5a5f;
-                --light: #fff;
-                --default-pad: 2.5rem;
-                --medium-pad: calc(var(--default-pad) / 2);
+                color: #193e5d;
             }
     
-            /* Navbar */
             .topnav {
                 background-color: #ffffff;
                 display: flex;
                 justify-content: space-between;
-                align-items: baseline;
-                padding: var(--medium-pad) var(--default-pad);
+                align-items: center;
+                padding: 5px 5px;
                 box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
                 border-bottom: 4px solid #e4e4e4;
-            }
-    
-            .topnav .navbar-brand,
-            .topnav .navbar-text {
-                color: #000000; /* Cor dos textos pretos */
+                font-family: Poppins, sans-serif;
             }
     
             .topnav-menu li {
@@ -67,9 +63,15 @@
                 font-weight: bold;
             }
     
+            .topnav img {
+                width: 60%;
+                max-width: 100px;
+                height: auto;
+            }
+    
             .botao {
-                background-color: var(--primary-color);
-                border-radius: 5px;
+                background-color: #193e5d;
+                border-radius: 2px;
                 border-style: none;
                 box-shadow: none;
                 color: #fff !important;
@@ -80,78 +82,43 @@
                 padding: 10px 35px;
                 text-align: center;
                 text-decoration: none;
-                line-height: 40px;
-            }
-            .botao-logout{
-                background-color: var(--primary-color);
-                border-radius: 5px;
-                border-style: none;
-                box-shadow: none;
-                color: #fff !important;
-                cursor: pointer;
-                font-family: Poppins, sans-serif;
-                font-size: px14;
-                font-weight: bold;
-                padding: 5px 18px;
-                text-align: center;
-                text-decoration: none;
-                line-height: 40px;
             }
     
             .botao:hover {
-                background-color: var(--primary-color-hover);
+                background-color: #246294;
                 opacity: 1;
                 transform: translateY(0);
-                transition-duration: 0.2s;
-            }
-    
-            .botao:hover:after {
-                opacity: 0.5;
-            }
-    
-            .botao:active {
-                transform: translateY(1px);
-                transition-duration: 0.2s;
-            }
-    
-            .botao:active:after {
-                opacity: 1;
-            }
-    
-            .botao a {
-                text-decoration: none;
-                color: #fff;
-            }
-    
-            .botao-busca {
-                font-size: 14px;
+                transition-duration: .20s;
             }
     
             .container-profile {
                 display: flex;
+                max-width: 600px;
                 flex-direction: column;
+                border-radius: 5px;
                 align-items: center;
-                justify-content: center;
                 text-align: center;
                 background-color: #ffffff;
                 padding: 50px 30px;
-                border-radius: 5px;
                 box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-                max-width: 920px; /* Defina o valor desejado para a largura máxima */
-                width: 100%; /* Adiciona para garantir que ocupe a largura total quando for menor que 800px */
-                margin: 0 auto; /* Adiciona para centralizar horizontalmente */
+                width: 100%;
+                margin: 0 auto;
                 margin-top: 50px;
-                color: #000000;
-                background: linear-gradient(to bottom, rgba(220, 220, 220, 0.92), #ffffff 70%);
+                font-family: Poppins, sans-serif;
+            }
     
+            .profile-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center center;
             }
     
             .profile-image-container {
                 width: 200px;
                 height: 200px;
-                margin: 0 auto;
                 margin-bottom: 20px;
-                border: 5px solid white;
+                border: 3px solid white;
                 border-radius: 50%;
                 overflow: hidden;
             }
@@ -163,22 +130,13 @@
                 object-position: center center;
             }
     
-            .btn-container {
-                margin-top: 20px;
-                clear: both;
-            }
     
-            #form-title {
-                color: rgba(0, 0, 0);
-                margin-bottom: 20px;
-                font-size: 30px; 
-            }
     
             .profile-card {
                 text-align: center;
-                width: 100%; /* Ocupar 100% da largura do container */
-                max-width: 400px; /* Limitar a largura para melhor leitura */
-                margin: 0 auto; /* Centralizar na largura disponível */
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
             }
     
             .profile-card p {
@@ -186,12 +144,9 @@
                 font-size: 16px;
             }
     
-            .btn-container a {
-                text-decoration: none;
-                color: #fff;
-                font-size: 16px;
+            .navbar-text {
+                padding-left: 30px;
             }
-    
         </style>
     </head>
 <body>
@@ -199,57 +154,54 @@
 
 {% comment %} ### perfil normal ///////////////////// {% endcomment %}
 
-    <nav class="navbar navbar-expand-lg topnav">
-        <a class="navbar-brand" href="#">Passeadores Anônimos</a><br>
-        <span class="navbar-text">Bem-vindo(a), {{ request.user }}</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="topnav-menu navbar-nav">
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                        {% if tipo_usuario.tipo == 'usuario' %}
-                        <a href="{% url 'home_usuario' %}" class="botao">Voltar à Home</a>
-                        {% elif tipo_usuario.tipo == 'passeador' %}
-                        <a href="{% url 'home_passeador' %}" class="botao">Voltar à Home</a>
-                        {% endif %}
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'agenda_passeador' user_id=request.user.id %}">Ver Agenda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'perfil' %}">Ver Perfil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'editar_perfil' %}">Editar Perfil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="botao-logout" href="{% url 'logout' %}">Logout</a>
-                </li>
+<nav class="navbar navbar-expand-lg topnav">
+    <img src="../../media/Imagens/passeadores_de_aluguel_logo.png" alt="Logo">
+    <span class="navbar-text">Bem-vindo(a), {{ request.user }}</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="topnav-menu navbar-nav">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                {% if tipo_usuario.tipo == 'usuario' %}
+                <a href="{% url 'home_usuario' %}" class="botao">Home</a>
+                {% elif tipo_usuario.tipo == 'passeador' %}
+                <a href="{% url 'home_passeador' %}" class="botao">Home</a>
                 {% endif %}
-            </ul>
-        </div>
-    </nav>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'agenda_passeador' user_id=request.user.id %}">Ver agenda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'perfil_passeador_self' request.user.id %}">Ver perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'editar_perfil_passeador' %}">Editar perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="botao" href="{% url 'logout' %}">Sair</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
 
     <div class="container-profile">
-        <div class="profile-card">
-            <div class="user-card">
-                <h1 class="mb-4">{{ tipo_usuario.user.first_name }} {{ tipo_usuario.user.last_name }}</h1>
-                <div class="mb-4 profile-image-container">
-                    <img src="{{ tipo_usuario.image.url }}" alt="Foto de Perfil" class="profile-image">
-                </div>
-                <p><i class="fas fa-phone"></i> Telefone: {{ tipo_usuario.telefone }}</p>
-                <p><i class="fas"></i> ID: {{ tipo_usuario.user.id}}</p>
-                <p></i> Sua nota: {% if media_avaliacoes %}{{ media_avaliacoes|floatformat:1 }} <i class="fas fa-star" style="color: #ffdd00;"></i>{% else %}Sem avaliações{% endif %}</p>
-                <div class="btn-container">
-                    <a href="{% url 'home_passeador' %}" class="btn btn-primary">Voltar à Home</a>
-                </div>
+        <div class="profile-image-container">
+            <img src="{{ perfil.user.tipousuario.image.url }}" alt="Foto de Perfil" class="profile-image">
+        </div>
+        <h2 id="form-title"><strong>{{ perfil.user.first_name }} {{ perfil.user.last_name }}</strong></h2><br>
+        <div class="profile-info">
+            <div class="profile-card">
+                <p><i class="fas fa-user"></i> <strong>Nome de usuário</strong><br> {{ perfil.user.username }}</p>
+                <p><i class="fas fa-phone"></i> <strong>Telefone</strong><br> {{ tipo_usuario.telefone }}</p>
+                <p></i> <strong>Sua nota:</strong> {% if media_avaliacoes %}{{ media_avaliacoes|floatformat:1 }} <i class="fas fa-star" style="color: #ffdd00;"></i>{% else %}Sem avaliações{% endif %}</p>
             </div>
         </div>
-        </div>
     </div>
+
     <br>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

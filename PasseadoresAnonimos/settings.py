@@ -72,8 +72,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'PasseadoresAnonimos',     # Nome do seu banco de dados PostgreSQL
-        'USER': 'postgres', # Nome de usuário do PostgreSQL
-        'PASSWORD': '123456', # Senha do PostgreSQL
+        'USER': 'eduardov', # Nome de usuário do PostgreSQL
+        'PASSWORD': '123', # Senha do PostgreSQL
         'HOST': 'localhost',      # Endereço do servidor PostgreSQL (normalmente 'localhost')
         'PORT': '',               # Porta do servidor (deixe em branco para usar a porta padrão)
     }

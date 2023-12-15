@@ -12,6 +12,7 @@ from django.contrib.auth import update_session_auth_hash
 from .forms import UserProfileForm
 from django.db.models import Avg
 from Avaliação.models import Avaliacao
+from django.urls import reverse
 
 @login_required
 def visualizar_perfil(request):
@@ -43,6 +44,31 @@ def editar_perfil(request):
         'profile_form': profile_form,
     }
     return render(request, 'perfil/editar_perfil.html', context)
+
+@login_required
+def editar_perfil_passeador(request):
+    perfil = Perfil.objects.get(user=request.user)
+    tipo_usuario = TipoUsuario.objects.get(user=request.user)
+
+    if request.method == "POST":
+        user_form = CustomUserChangeForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=tipo_usuario)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Seu perfil foi atualizado com sucesso!')
+            return redirect(reverse('perfil_passeador_self', args=[request.user.id]))
+    else:
+        user_form = CustomUserChangeForm(instance=request.user)
+        profile_form = UserProfileForm(instance=tipo_usuario)
+
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form,
+    }
+    return render(request, 'perfil/editar_perfil_passeador.html', context)
+
 
 @login_required
 def perfil_passeador(request, user_id):

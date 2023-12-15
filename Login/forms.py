@@ -134,4 +134,4 @@ class PesquisaServicoForm(forms.Form):
         ('vila_sao_jose', 'Vila São José')
     ]
     bairro = forms.ChoiceField(choices=BAIRROS_CHOICES, required=False)
-    duracao_passeio = forms.ChoiceField(choices=[('', 'Qualquer'), ('30m', '30 minutos'), ('1h', '1 hora')], required=False)
+    duracao_passeio = forms.ChoiceField(choices=[('', 'Qualquer'), ('30m', '30 minutos'), ('1h', '1 hora')], required=False, label="Duração do passeio")
